@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sai Praveen · IT Administrator & UX-Driven Portfolio</title>
+  <!-- Google Fonts: modern sans + display -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS Scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(10, 20, 35, 1) 0%, #03070f 100%);
+      color: #eef5ff;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* custom neon/glass morphism */
+    .glass-card {
+      background: rgba(20, 30, 45, 0.55);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(72, 187, 255, 0.2);
+      border-radius: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .neon-text {
+      background: linear-gradient(135deg, #FFFFFF 0%, #7BC9FF 60%, #3B82F6 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .glow-border {
+      transition: all 0.3s ease;
+    }
+    .glow-border:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 0 12px rgba(59,130,246,0.3);
+    }
+
+    /* container */
+    .main-wrapper {
+      max-width: 1350px;
+      margin: 0 auto;
+      padding: 2rem 2rem 3rem;
+    }
+
+    /* hero section */
+    .hero-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 4rem;
+      padding: 1rem 0;
+    }
+    .hero-badge {
+      background: rgba(59,130,246,0.2);
+      border-radius: 60px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      width: fit-content;
+      border: 1px solid rgba(59,130,246,0.5);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-size: 3.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .hero-desc {
+      font-size: 1.1rem;
+      color: #b9d0f0;
+      max-width: 550px;
+      margin: 1.5rem 0;
+    }
+    .contact-chip {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .contact-chip a, .contact-chip span {
+      background: rgba(255,255,255,0.03);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      transition: 0.2s;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #eef5ff;
+      text-decoration: none;
+    }
+    .contact-chip a:hover {
+      background: #3b82f6;
+      border-color: #3b82f6;
+      transform: translateY(-2px);
+    }
+    .avatar-icon {
+      background: linear-gradient(145deg, #1e2a3a, #0f1722);
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      box-shadow: 0 30px 40px -20px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.1);
+      border: 2px solid #3b82f640;
+    }
+
+    /* grid layout 2 columns */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* left panel modern */
+    .info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .skill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+    }
+    .skill-pill {
+      background: rgba(59,130,246,0.15);
+      backdrop-filter: blur(4px);
+      border-radius: 40px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: 0.2s;
+      border: 1px solid rgba(59,130,246,0.3);
+    }
+    .skill-pill i {
+      margin-right: 8px;
+      font-size: 0.8rem;
+      color: #60a5fa;
+    }
+    .responsibility-list {
+      list-style: none;
+    }
+    .responsibility-list li {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 1rem;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+    .resp-icon {
+      background: #1e2f42;
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #60a5fa;
+    }
+
+    /* right side experience card - ui/ux rich */
+    .exp-card-ui {
+      background: rgba(12, 22, 35, 0.7);
+      backdrop-filter: blur(16px);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      margin-bottom: 1.8rem;
+      border: 1px solid rgba(59,130,246,0.25);
+      transition: all 0.25s;
+    }
+    .exp-card-ui:hover {
+      border-color: #3b82f6;
+      transform: translateY(-4px);
+    }
+    .exp-header-ui {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+    }
+    .role-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      background: linear-gradient(to right, #fff, #90cdf4);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .date-chip {
+      background: #0f212f;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+    .duty-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+    .duty-item {
+      display: flex;
+      gap: 0.8rem;
+      align-items: baseline;
+    }
+    .duty-item i {
+      color: #3b82f6;
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+
+    .achievement-bento {
+      background: linear-gradient(125deg, rgba(30, 58, 85, 0.5), rgba(17, 34, 52, 0.7));
+      border-radius: 1.5rem;
+      padding: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .bento-item {
+      background: rgba(0,0,0,0.3);
+      border-radius: 1.2rem;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* micro-interactions + parallax */
+    .floating-icon {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* footer modern */
+    .footer-modern {
+      margin-top: 4rem;
+      text-align: center;
+      padding: 2rem 0 0;
+      border-top: 1px solid rgba(72,187,255,0.2);
+    }
+
+    @media (max-width: 850px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .avatar-icon {
+        width: 150px;
+        height: 150px;
+        font-size: 3.5rem;
+      }
+      .main-wrapper {
+        padding: 1rem;
+      }
+    }
+
+    /* progress bar animation for fun */
+    .hover-grow {
+      transition: all 0.2s;
+    }
+    button, a {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="main-wrapper">
+  
+  <!-- Hero Section with UX vibe -->
+  <div class="hero-section" data-aos="fade-up" data-aos-duration="800">
+    <div>
+      <div class="hero-badge">
+        <i class="fas fa-crown"></i> IT Administrator · Desktop Architect
+      </div>
+      <h1 class="hero-title">
+        Sai <span class="neon-text">Praveen</span><br>
+        <span style="font-size: 0.9em;">⚡ Infrastructure & Experience</span>
+      </h1>
+      <p class="hero-desc">
+        Transforming IT operations with precision & user-centric support. 7+ months driving system excellence at Media Politikos, previously core desktop specialist.
+      </p>
+      <div class="contact-chip">
+        <span><i class="fas fa-envelope"></i> saivemuri04@gmail.com</span>
+        <a href="#"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
+        <span><i class="fas fa-map-marker-alt"></i> Kurnool · Hyderabad</span>
+      </div>
+    </div>
+    <div class="avatar-icon floating-icon">
+      <i class="fas fa-server"></i>
+    </div>
+  </div>
+
+  <!-- Dashboard Grid: left = skills/responsibilities, right = experience -->
+  <div class="dashboard-grid">
+    <!-- LEFT PANEL: modern skills + summary + core duties (UI/UX detailed) -->
+    <div class="info-panel">
+      <div class="glass-card" style="padding: 1.5rem;" data-aos="fade-right" data-aos-delay="100">
+        <h3 style="display: flex; gap: 10px; align-items: center; margin-bottom: 1rem;"><i class="fas fa-bolt" style="color:#60a5fa"></i> Core <span class="neon-text">Competencies</span></h3>
+        <div class="skill-cloud">
+          <div class="skill-pill"><i class="fas fa-database"></i> System Admin</div>
+          <div class="skill-pill"><i class="fas fa-headset"></i> IT Service Mgmt</div>
+          <div class="skill-pill"><i class="fas fa-chart-line"></i> Data Analysis</div>
+          <div class="skill-pill"><i class="fas fa-shield-alt"></i> Network Security</div>
+          <div class="skill-pill"><i class="fas fa-cloud-upload-alt"></i> Backup/Recovery</div>
+          <div class="skill-pill"><i class="fas fa-key"></i> Access Control</div>
+          <div class="skill-pill"><i class="fas fa-tachometer-alt"></i> Performance Monitor</div>
+        </div>
+      </div>
+
+      <div class="glass-card" style="padding: 1.5rem;" data-aos="fade-right" data-aos-delay="200">
+        <h3 style="margin-bottom: 0.8rem;"><i class="fas fa-user-astronaut"></i> Professional <span class="neon-text">Snapshot</span></h3>
+        <p style="color: #cdddfc; font-size: 0.9rem; margin-bottom: 1rem;">
+          IT professional with hands-on desktop support, now thriving as IT Administrator at Media Politikos. Passionate about solving technical puzzles, automating workflows, and designing resilient infrastructures that empower teams.
+        </p>
+        <div style="background: rgba(59,130,246,0.1); padding: 0.8rem; border-radius: 1rem;">
+          <i class="fas fa-quote-left"></i> “Delivering zero-downtime operations and user-first IT experiences.”
+        </div>
+      </div>
+
+      <div class="glass-card" style="padding: 1.5rem;" data-aos="fade-right" data-aos-delay="300">
+        <h3><i class="fas fa-clipboard-list"></i> Key Operational <span class="neon-text">Responsibilities</span></h3>
+        <ul class="responsibility-list" style="margin-top: 1rem;">
+          <li><span class="resp-icon"><i class="fas fa-microchip"></i></span> Manage servers, networks & workstations</li>
+          <li><span class="resp-icon"><i class="fas fa-life-ring"></i></span> 24/7 technical support & troubleshooting</li>
+          <li><span class="resp-icon"><i class="fas fa-chart-simple"></i></span> System performance & security monitoring</li>
+          <li><span class="resp-icon"><i class="fas fa-users"></i></span> User accounts, access & permissions</li>
+          <li><span class="resp-icon"><i class="fas fa-database"></i></span> Automated backups & disaster recovery</li>
+          <li><span class="resp-icon"><i class="fas fa-truck"></i></span> Vendor coordination & procurement</li>
+          <li><span class="resp-icon"><i class="fas fa-file-alt"></i></span> IT documentation & asset inventory</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: dynamic experience with modern UI/UX cards -->
+    <div data-aos="fade-left" data-aos-delay="150">
+      <!-- main role card -->
+      <div class="exp-card-ui">
+        <div class="exp-header-ui">
+          <div>
+            <span class="role-title">System Administrator</span>
+            <span style="background: #2563eb20; border-radius: 20px; padding: 0.2rem 0.8rem; margin-left: 0.6rem; font-size: 0.75rem;">👔 Media Politikos</span>
+          </div>
+          <div class="date-chip"><i class="far fa-calendar-alt"></i> Dec 2025 – Present · 7 months</div>
+        </div>
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.8rem; font-size: 0.8rem;"><i class="fas fa-location-dot"></i> Hyderabad, Telangana · Hybrid Infrastructure</div>
+        <div class="duty-grid">
+          <div class="duty-item"><i class="fas fa-check-circle"></i> <span>Architect & maintain server clusters (Windows/Linux) ensuring 99.9% uptime for 100+ workstations.</span></div>
+          <div class="duty-item"><i class="fas fa-check-circle"></i> <span>Deliver L2/L3 desktop support, slashing ticket resolution time by 25% via proactive monitoring.</span></div>
+          <div class="duty-item"><i class="fas fa-check-circle"></i> <span>Implement network security policies, endpoint protection, and Zero Trust access controls.</span></div>
+          <div class="duty-item"><i class="fas fa-check-circle"></i> <span>Administer Active Directory, Azure AD, M365, and automated backup routines — safeguarded critical media assets.</span></div>
+          <div class="duty-item"><i class="fas fa-check-circle"></i> <span>Lead procurement negotiations reducing hardware costs by 12% while scaling infrastructure.</span></div>
+          <div class="duty-item"><i class="fas fa-check-circle"></i> <span>Maintain centralized IT documentation, inventory, and knowledge base for operational excellence.</span></div>
+        </div>
+        <div class="achievement-bento">
+          <div class="bento-item"><i class="fas fa-chart-line"></i> 25% faster resolution</div>
+          <div class="bento-item"><i class="fas fa-dollar-sign"></i> 12% cost reduction</div>
+          <div class="bento-item"><i class="fas fa-clock"></i> 99.9% uptime</div>
+          <div class="bento-item"><i class="fas fa-robot"></i> Automation scripts</div>
+        </div>
+      </div>
+
+      <!-- additional UX highlight: previous desktop support & data analysis expertise -->
+      <div class="exp-card-ui" style="background: rgba(20, 35, 55, 0.7);">
+        <div class="exp-header-ui">
+          <span class="role-title" style="font-size: 1.3rem;">Desktop Support & IT Ops Specialist</span>
+          <div class="date-chip"><i class="fas fa-history"></i> Earlier experience</div>
+        </div>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Comprehensive background in end-user computing, hardware troubleshooting, and data analysis for capacity planning — recognized for building user-friendly IT support portals.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem;">
+          <span class="skill-pill" style="background: #1f3a5f;"><i class="fas fa-chalkboard-user"></i> End-user training</span>
+          <span class="skill-pill" style="background: #1f3a5f;"><i class="fas fa-chart-pie"></i> Data-driven insights</span>
+          <span class="skill-pill" style="background: #1f3a5f;"><i class="fas fa-laptop"></i> Remote assistance</span>
+        </div>
+      </div>
+
+      <!-- modern stats & interaction + ui/ux inspiration -->
+      <div class="glass-card" style="padding: 1.2rem 1.5rem; margin-top: 0.5rem;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;">
+          <div><i class="fas fa-tools" style="color:#60a5fa"></i> <strong>+200</strong> tickets resolved</div>
+          <div><i class="fas fa-network-wired"></i> <strong>99.5%</strong> network availability</div>
+          <div><i class="fas fa-database"></i> <strong>15+</strong> servers maintained</div>
+          <div><i class="fas fa-smile"></i> <strong>98%</strong> user satisfaction</div>
+        </div>
+      </div>
+      
+      <!-- interactive UI/UX touch: dynamic timeline card -->
+      <div class="glass-card" style="margin-top: 1.5rem; padding: 1rem 1.5rem; text-align: center;">
+        <h4 style="display: flex; justify-content: center; gap: 0.5rem;"><i class="fas fa-palette"></i> UI/UX philosophy in IT</h4>
+        <p style="font-size: 0.85rem;">"Designing admin dashboards with empathy & clean interfaces — because system tools deserve beautiful ergonomics."</p>
+        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+          <i class="fab fa-figma"></i> <i class="fas fa-mouse-pointer"></i> <i class="fas fa-drafting-compass"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- additional section: Certifications & micro-interactions (showcasing UI/UX + growth) -->
+  <div data-aos="fade-up" data-aos-delay="200" style="margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center;">
+    <div class="glass-card" style="padding: 0.8rem 1.5rem; backdrop-filter: blur(8px);">
+      <i class="fas fa-certificate"></i> ITIL Foundation · CompTIA Security+ (in progress) 
+    </div>
+    <div class="glass-card" style="padding: 0.8rem 1.5rem;">
+      <i class="fas fa-code-branch"></i> Automation & scripting (PowerShell, Bash)
+    </div>
+    <div class="glass-card" style="padding: 0.8rem 1.5rem;">
+      <i class="fas fa-cloud"></i> CloudOps: Azure fundamentals
+    </div>
+  </div>
+
+  <!-- footer with link and modern vibe -->
+  <div class="footer-modern">
+    <p><i class="fas fa-terminal"></i> Sai Praveen · IT Administrator | Desktop Support Specialist | Media Politikos</p>
+    <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; font-size: 0.8rem;">
+      <span><i class="fas fa-envelope"></i> saivemuri04@gmail.com</span>
+      <span><i class="fab fa-linkedin"></i> linkedin.com/in/sai-praveen-347059235</span>
+      <span><i class="fas fa-map-pin"></i> Kurnool Urban, Andhra Pradesh</span>
+    </div>
+  </div>
+</div>
+
+<!-- AOS initialization + subtle cursor glow effect -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true,
+    mirror: false,
+  });
+
+  // extra micro interaction: dynamic background gradient follow mouse? optional clean effect
+  document.body.addEventListener('mousemove', function(e) {
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+    document.body.style.background = `radial-gradient(circle at ${x}% ${y}%, #0c1a2b 0%, #03070f 100%)`;
+  });
+  // small throttle for performance
+  let timer;
+  document.body.addEventListener('mousemove', function(e){
+    if(timer) clearTimeout(timer);
+    timer = setTimeout(()=>{}, 15);
+  });
+</script>
+</body>
+</html>
